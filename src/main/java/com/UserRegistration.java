@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class UserRegistration {
 
 
-        public ArrayList<String> requestLogs;
+        private ArrayList<String> requestLogs;
 
 
          JSONObject jsonObject;
@@ -22,18 +22,18 @@ public class UserRegistration {
 
             this.requestLogs= getUserRegistration();
 
+            if(this.requestLogs.isEmpty()){ this.requestLogs.add("200");SQLQueries.createNewUser(jsonObject);
+
+                System.out.println(this.requestLogs);}
+
         }
 
 
        public ArrayList<String> getUserRegistration() throws SQLException {
 
-
            CheckUserData checkUserData = new CheckUserData(jsonObject);
 
-           if(requestLogs==null){ SQLQueries.createNewUser(jsonObject);}
-
-           return  checkUserData.requestLogs;
-
+           return  checkUserData.getRequestLogs();
 
        }
 

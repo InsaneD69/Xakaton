@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import static com.DatabaseConnection.connectionDB;
+import static com.DatabaseConnection.nameOffersTable;
 
 public class SQLQueries {
 
@@ -86,14 +87,26 @@ public class SQLQueries {
 
 
 
-
-
-
-
     }
-    public void createRequestSeller(JSONObject jsonObject){
+    public static void createRequestSeller(JSONObject jsonObject) throws SQLException {
 
+        String query = "insert into \""+nameOffersTable+"\" "+" (" +
+                "\"productName\"," +
+                "\"quantity\"," +
+                "\"nameCompany\"," +
+                "\"deliveryCost\"," +
+                "\"comment\"," +
+                " values (?,?,?,?,?)";
 
+        PreparedStatement preparedStatement=connectionDB.prepareStatement(query);
+
+        preparedStatement.setString(1,jsonObject.getString("productName"));
+        preparedStatement.setString(2,jsonObject.getString("quantity"));
+        preparedStatement.setString(3,jsonObject.getString("nameCompany"));
+        preparedStatement.setString(4,jsonObject.getString("deliveryCost"));
+        preparedStatement.setString(5,jsonObject.getString("comment"));
+
+        int resultSet = preparedStatement.executeUpdate(query);
 
 
     }

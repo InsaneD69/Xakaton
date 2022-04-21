@@ -8,6 +8,11 @@ import java.util.ArrayList;
 public class AddPlacement {
 
     public ArrayList<String> requestLogs;
+
+    public ArrayList<String> getRequestLogs() {
+        return requestLogs;
+    }
+
     JSONObject jsonObject;
 
 
@@ -16,6 +21,10 @@ public class AddPlacement {
         this.jsonObject=jsonObject;
 
         this.requestLogs= getAddPlacement();
+
+        if(requestLogs==null){ requestLogs.add("200");SQLQueries.createRequestSeller(jsonObject);
+
+        System.out.println(requestLogs);}
 
     }
 
@@ -27,6 +36,7 @@ public class AddPlacement {
 
 
     }
+
 
 
 

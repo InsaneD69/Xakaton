@@ -28,14 +28,26 @@ public class CheckNewAd {
         });
 
 
+        if(errors){
 
+
+            System.out.println(requestLogs);
+
+        } else {
+
+            requestLogs.add("200");
+
+        }
 
 
     }
 
     public ArrayList<String> getRequestLogs() {
+
         return requestLogs;
+
     }
+
 
 
     public void checkNotNullField(String key){
@@ -48,6 +60,8 @@ public class CheckNewAd {
             jsonObject.get(key);
 
         } catch (JSONException e){
+
+            errors=true;
 
             requestLogs.add(  "Ошибка в поле: "+ UserRegistrationFields.valueOf(key).ruLocale+ " - поле пустое");
 
